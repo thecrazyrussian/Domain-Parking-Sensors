@@ -5,3 +5,4 @@ nltk==2.0.5
 pyquery==1.2.9
 PyYAML==3.11
 tldextract==1.6
+BeautifulSoup4==4.4.1

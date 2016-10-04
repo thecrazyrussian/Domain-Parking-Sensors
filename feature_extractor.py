@@ -12,6 +12,7 @@ import dns.query
 import dns.resolver
 from collections import defaultdict
 from pyquery import PyQuery as pq
+from bs4 import BeautifulSoup
 import includes.typo_checker
 
 
@@ -197,7 +198,8 @@ def analyze_text(filename):
 	htmlContent = re.sub(re.compile('<!--.*?-->', re.DOTALL), '', htmlContent)
 	htmlContent = re.sub(re.compile('<script.*?</script>', re.DOTALL), '', htmlContent)
 	# Get the natural language present on the page
-	textualContent = nltk.clean_html(htmlContent)
+	soup = BeautifulSoup(htmlContent, "lxml")
+	textualContent = soup.get_text()
 	# Remove all whitespace, to keep only textual characters
 	textualContent = re.sub('\s+', ' ', textualContent).strip()
 
